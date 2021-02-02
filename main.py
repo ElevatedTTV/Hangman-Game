@@ -1,3 +1,4 @@
+#  HANGMAN GAME by Rob Cox  #
 import random
 
 
@@ -19,7 +20,7 @@ def hang_man(filepath):
         return new_word_list
 
 
-hang_man("FILE GOES HERE)
+hang_man("C:\\Users\\Rob\\PycharmProjects\\pythonProject9\\wordlist")
 
 secret_word = str(new_word_list[random.randint(0, len(new_word_list))]).lower()
 hidden_word = str('*'*len(secret_word))
@@ -36,18 +37,23 @@ def guessingGame():
         for number in range(0, 10):
             if userInput == str(number):
                 print('ENTER A DAMN LETTER')
+        if userInput == secret_word:
+            print(f'Fuck...Good Job, {secret_word} was the right word!')
+            break
         if str(userInput.lower()) in secret_word:
             print('Good Job! ')
             user_guesses.add(userInput)
             guess_count = 0
             print(f'Secret Word: {hidden_word}, Your correct guesses: ' + ' '.join(user_guesses).upper())
+            print('You have ' + str(int(3 - guess_count)) + ' guess(es) remaining.')
             # for letter in user_guesses:
             #     print(secret_word.index(letter))    <<<---- Prints the index location of the guessed letter.
         else:
             print('Nope Not Right')
             guess_count += 1  # only charges a guess count if guess was incorrect.
             print(f'Secret Word: {hidden_word}, Your correct guesses: ' + ' '.join(user_guesses).upper())
-            incorrect_guesses.append(userInput)
+            print('You have ' + str(int(3-guess_count)) + ' guess(es) remaining.')
+
     else:
         print(f'Sorry, you ran out of guesses, the secret word was \"{secret_word}\"!')
 
